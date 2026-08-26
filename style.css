@@ -31,7 +31,7 @@
 }
 
 *, *::before, *::after{ box-sizing: border-box; }
-html{ scroll-behavior: smooth; }
+html{ scroll-behavior: smooth; scroll-padding-top: 76px; }
 body{
   margin:0;
   font-family: var(--font-body);
@@ -114,7 +114,6 @@ a:focus-visible, button:focus-visible, input:focus-visible{
   opacity:.14;
   user-select:none;
 }
-.sketch-hero{ top:70px; right:-60px; width:640px; max-width:46vw; transform:rotate(-6deg); opacity:.16; }
 .sketch-partners{ top:50%; left:50%; width:900px; max-width:80vw; transform:translate(-50%,-50%); opacity:.08; }
 .sketch-timeline{ top:120px; left:-140px; width:640px; max-width:60vw; transform:rotate(8deg); opacity:.07; }
 
@@ -145,11 +144,14 @@ a:focus-visible, button:focus-visible, input:focus-visible{
    Nav
    ========================================================= */
 .site-nav{
-  position: sticky; top:0; z-index: 60;
-  background: rgba(41,41,40,.92);
-  backdrop-filter: blur(6px);
+  position: fixed; top:0; left:0; right:0;
+  z-index: 60;
+  background: rgba(41,41,40,.55);
+  backdrop-filter: blur(8px);
   color:#fff;
+  transition: background .25s ease;
 }
+.site-nav.is-scrolled{ background: rgba(41,41,40,.92); }
 .site-nav .wrap{
   display:flex; align-items:center; justify-content:space-between;
   padding-top:14px; padding-bottom:14px;
@@ -173,32 +175,62 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 .nav-toggle{ display:none; }
 
 /* =========================================================
-   HERO
+   HERO (video background)
    ========================================================= */
 .hero{
   position: relative;
   background: var(--charcoal);
   color: #fff;
-  padding: 96px 0 0;
   overflow:hidden;
   isolation: isolate;
 }
-.hero::before{
-  content:"";
-  position:absolute; inset:0;
-  background-image:
-    radial-gradient(circle at 12% 18%, rgba(0,150,173,.35), transparent 45%),
-    radial-gradient(circle at 88% 8%, rgba(246,146,30,.28), transparent 40%),
-    radial-gradient(circle at 75% 85%, rgba(161,35,143,.25), transparent 45%);
-  z-index:-1;
+.hero-video-section{
+  padding: 0;
+  min-height: 100svh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
 }
-.hero-inner{
+.hero-media{
+  position:absolute; inset:0;
+  z-index:0;
+  background: var(--charcoal);
+}
+.hero-video{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit: cover;
+  object-position: center;
+}
+.hero-overlay{
+  position:absolute; inset:0;
+  background:
+    linear-gradient(90deg, rgba(20,20,19,.88) 0%, rgba(20,20,19,.72) 32%, rgba(20,20,19,.38) 62%, rgba(20,20,19,.28) 100%),
+    linear-gradient(to top, rgba(20,20,19,.9) 0%, rgba(20,20,19,.15) 38%, rgba(20,20,19,.35) 100%);
+}
+
+.hero-video-toggle{
+  position:absolute;
+  right: 22px; bottom: 22px;
+  z-index:3;
+  width:42px; height:42px;
+  border-radius:50%;
+  background: rgba(20,20,19,.55);
+  border: 1.5px solid rgba(255,255,255,.4);
+  color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+  backdrop-filter: blur(3px);
+  transition: background .2s ease, border-color .2s ease;
+}
+.hero-video-toggle:hover{ background: rgba(20,20,19,.8); border-color:#fff; }
+.hero-video-toggle svg{ width:18px; height:18px; }
+
+.hero-inner-video{
   position:relative; z-index:1;
-  display:grid;
-  grid-template-columns: 1.15fr .85fr;
-  gap: 48px;
-  align-items:center;
-  padding-bottom: 64px;
+  max-width: 680px;
+  padding-top: 160px;
+  padding-bottom: 90px;
 }
 .hero .eyebrow{ color: var(--orange); margin-bottom: 18px; display:block; }
 .hero h1{
@@ -209,6 +241,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{
   font-size: clamp(52px, 8.4vw, 118px);
   margin: 0 0 22px;
   letter-spacing: .01em;
+  text-shadow: 0 2px 24px rgba(0,0,0,.35);
 }
 .hero h1 .num{
   color: var(--teal);
@@ -220,8 +253,9 @@ a:focus-visible, button:focus-visible, input:focus-visible{
   font-size: clamp(17px, 1.6vw, 21px);
   line-height:1.55;
   max-width: 46ch;
-  color: #E9E6DC;
+  color: #EFECE2;
   margin: 0 0 30px;
+  text-shadow: 0 1px 14px rgba(0,0,0,.35);
 }
 .hero-cta{ display:flex; gap:16px; flex-wrap:wrap; }
 .btn{
@@ -239,21 +273,6 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 .btn-outline{ border-color: rgba(255,255,255,.55); color:#fff; }
 .btn-outline:hover{ border-color:#fff; }
 
-.hero-visual{
-  position:relative;
-  aspect-ratio: 4/5;
-  border-radius: 18px;
-  overflow:hidden;
-  box-shadow: 0 30px 70px rgba(0,0,0,.45);
-}
-.hero-visual img{ width:100%; height:100%; object-fit:cover; }
-.hero-visual .tag{
-  position:absolute; left:18px; bottom:18px;
-  background: rgba(30,30,29,.75);
-  color:#fff; font-size:12px; padding:8px 12px; border-radius:8px;
-  font-weight:600; letter-spacing:.02em;
-}
-
 .hero-scroll{
   position:relative; z-index:1;
   display:flex; align-items:center; gap:10px;
@@ -266,6 +285,19 @@ a:focus-visible, button:focus-visible, input:focus-visible{
   animation: pulse-line 2.2s ease-in-out infinite;
 }
 @keyframes pulse-line{ 0%,100%{opacity:.3} 50%{opacity:1} }
+
+@media (prefers-reduced-motion: reduce){
+  .hero-video{ display:none; }
+  .hero-media{ background: var(--charcoal) url('assets/video/hero-poster.jpg') center/cover no-repeat; }
+}
+@media (max-width: 640px){
+  .hero-inner-video{ padding-top: 130px; padding-bottom: 60px; }
+  .hero-overlay{
+    background:
+      linear-gradient(rgba(20,20,19,.85), rgba(20,20,19,.85)),
+      linear-gradient(to top, rgba(20,20,19,.9) 0%, rgba(20,20,19,.3) 60%);
+  }
+}
 
 /* =========================================================
    STATS
@@ -638,8 +670,6 @@ footer.site-footer{
    Responsive
    ========================================================= */
 @media (max-width: 980px){
-  .hero-inner{ grid-template-columns: 1fr; }
-  .hero-visual{ aspect-ratio: 16/10; order:-1; }
   .stat-grid{ grid-template-columns: repeat(2,1fr); }
   .logo-grid{ grid-template-columns: repeat(3,1fr); }
   .pillars{ grid-template-columns: 1fr; }
@@ -647,8 +677,7 @@ footer.site-footer{
   .site-nav nav{ display:none; }
 }
 @media (max-width: 600px){
-  .wrap{ padding:0 20px; }
+  .wrap{ padding-left:20px; padding-right:20px; }
   .stat-grid{ grid-template-columns: 1fr; }
   .logo-grid{ grid-template-columns: repeat(2,1fr); }
-  .hero{ padding-top: 76px; }
 }

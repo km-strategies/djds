@@ -4,6 +4,61 @@
 document.addEventListener('DOMContentLoaded', function () {
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---------- Nav background on scroll ---------- */
+  var siteNav = document.querySelector('.site-nav');
+  if (siteNav) {
+    var updateNav = function () {
+      siteNav.classList.toggle('is-scrolled', window.scrollY > 40);
+    };
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+  }
+
+  /* ---------- Hero background video: pause/play toggle + perf/a11y handling ---------- */
+  var heroVideo = document.getElementById('heroVideo');
+  var heroToggle = document.getElementById('heroVideoToggle');
+  if (heroVideo && heroToggle) {
+    var setToggleState = function (playing) {
+      heroToggle.setAttribute('aria-pressed', playing ? 'false' : 'true');
+      heroToggle.setAttribute('aria-label', playing ? 'Pause background video' : 'Play background video');
+      heroToggle.querySelector('.icon-pause').hidden = !playing;
+      heroToggle.querySelector('.icon-play').hidden = playing;
+    };
+
+    if (reduceMotion) {
+      // Respect reduced-motion: never autoplay, show poster only.
+      heroVideo.pause();
+      heroVideo.removeAttribute('autoplay');
+      setToggleState(false);
+    }
+
+    heroToggle.addEventListener('click', function () {
+      if (heroVideo.paused) {
+        heroVideo.play();
+        setToggleState(true);
+      } else {
+        heroVideo.pause();
+        setToggleState(false);
+      }
+    });
+
+    // Pause the video when it's scrolled out of view to save resources.
+    if ('IntersectionObserver' in window) {
+      var heroIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!heroToggle.getAttribute('aria-pressed') || heroToggle.getAttribute('aria-pressed') === 'false') {
+            if (entry.isIntersecting && !reduceMotion) {
+              heroVideo.play().catch(function () {});
+            } else {
+              heroVideo.pause();
+            }
+          }
+        });
+      }, { threshold: 0.1 });
+      heroIo.observe(heroVideo);
+    }
+  }
+
   /* ---------- Reveal-on-scroll (fade up) ---------- */
   var revealEls = document.querySelectorAll('[data-reveal]');
   if ('IntersectionObserver' in window && !reduceMotion) {

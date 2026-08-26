@@ -61,32 +61,44 @@
 <main id="main">
 
   <!-- ================= HERO ================= -->
-  <section class="hero" id="top">
-    <img class="sketch-watermark sketch-hero" src="assets/sketch-loops-orange.png" alt="" aria-hidden="true">
-    <div class="wrap hero-inner">
-      <div>
-        <span class="eyebrow">Designing Justice + Designing Spaces</span>
-        <h1>
-          <span class="num">10 Years</span>
-          <span class="underlined">of Designing Justice
-            <svg class="sk-underline-svg" viewBox="0 0 220 22" aria-hidden="true"><use href="#sk-underline" xlink:href="#sk-underline"/></svg>
-          </span>
-        </h1>
-        <p class="lede">
-          For a decade, Designing Justice + Designing Spaces (DJDS) has partnered with communities most harmed by incarceration and disinvestment
-          to imagine, design, build, and own spaces rooted in healing instead of punishment. This is the story
-          of what we've built together — and where we're headed next.
-        </p>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#give">Support the next decade</a>
-          <a class="btn btn-outline" href="#timeline">See our story</a>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <img src="assets/Love-Building2024_N4_crop.png" alt="The LOVE Building in Detroit — a restored brick building with a colorful chevron-tiled facade, home to justice-oriented nonprofits.">
-        <span class="tag">The LOVE Building — Detroit, MI</span>
+  <section class="hero hero-video-section" id="top">
+    <div class="hero-media">
+      <video
+        class="hero-video"
+        id="heroVideo"
+        autoplay muted loop playsinline
+        poster="assets/video/hero-poster.jpg"
+        aria-hidden="true">
+        <source src="assets/video/hero-bg.webm" type="video/webm">
+        <source src="assets/video/hero-bg.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
+    </div>
+
+    <button type="button" class="hero-video-toggle" id="heroVideoToggle" aria-pressed="false" aria-label="Pause background video">
+      <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="5" height="16" rx="1" fill="currentColor"/><rect x="14" y="4" width="5" height="16" rx="1" fill="currentColor"/></svg>
+      <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M6 4l15 8-15 8V4z" fill="currentColor"/></svg>
+    </button>
+
+    <div class="wrap hero-inner-video">
+      <span class="eyebrow">Designing Justice + Designing Spaces</span>
+      <h1>
+        <span class="num">10 Years</span>
+        <span class="underlined">of Designing Justice
+          <svg class="sk-underline-svg" viewBox="0 0 220 22" aria-hidden="true"><use href="#sk-underline" xlink:href="#sk-underline"/></svg>
+        </span>
+      </h1>
+      <p class="lede">
+        For a decade, Designing Justice + Designing Spaces (DJDS) has partnered with communities most harmed by incarceration and disinvestment
+        to imagine, design, build, and own spaces rooted in healing instead of punishment. This is the story
+        of what we've built together — and where we're headed next.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#give">Support the next decade</a>
+        <a class="btn btn-outline" href="#timeline">See our story</a>
       </div>
     </div>
+
     <div class="wrap hero-scroll">
       <span class="line"></span> Scroll to explore a decade of work
     </div>
@@ -97,6 +109,7 @@
       <i style="background:var(--orange)"></i><i style="background:var(--cork)"></i><i style="background:var(--purple)"></i>
     </div>
   </section>
+
 
   <!-- ================= IMPACT STATS ================= -->
   <section class="stats" id="impact">

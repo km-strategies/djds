@@ -6,8 +6,9 @@ built from DJDS's own brand guide and photography.
 ## What's here
 - `index.html` — full page markup + copy
 - `style.css` — all styling, using the exact palette/type from `DJDS_2026BrandGuidelines_v3.pdf`
-- `script.js` — scroll reveals, animated stat counters, timeline scroll progress bar (all vanilla JS, no dependencies)
+- `script.js` — scroll reveals, animated stat counters, hero video controls, timeline spine draw-on-scroll (all vanilla JS, no dependencies)
 - `assets/` — the photos/renderings you provided, resized and compressed for web
+- `assets/video/` — the compressed hero background video (`hero-bg.mp4`, `hero-bg.webm`) and its poster frame (`hero-poster.jpg`), generated from your uploaded `VideoSample-DJDSsm.mp4`
 
 Open `index.html` in a browser to preview it as-is.
 
@@ -39,6 +40,35 @@ Open `index.html` in a browser to preview it as-is.
   using a scroll-linked `stroke-dashoffset` animation. Each year sits in a hand-drawn circle node
   on the spine, with cards alternating left/right — colors still rotate through the tertiary
   palette per entry.
+- **Hero: full-bleed background video**. The top section now plays your supplied video
+  (`VideoSample-DJDSsm.mp4`) on a continuous muted loop behind the "10 Years of Designing
+  Justice" headline and lede copy, with a dark gradient overlay for text contrast. Details:
+  - The source video was compressed for web delivery into two formats in `assets/video/`:
+    `hero-bg.mp4` (H.264, ~2.5MB) and `hero-bg.webm` (VP9, ~1.7MB, tried first by browsers that
+    support it). `hero-poster.jpg` is a still frame shown instantly while the video loads.
+  - A visible pause/play button (bottom-right of the hero) lets visitors stop the loop — this
+    is a WCAG accessibility requirement for any auto-playing content that runs longer than 5
+    seconds, not optional polish.
+  - The video **never autoplays** for visitors with `prefers-reduced-motion` enabled at the OS
+    level; they see the poster frame instead. It also auto-pauses whenever scrolled out of view
+    to save battery/bandwidth, and resumes when scrolled back — unless the visitor manually
+    paused it, in which case their choice is respected.
+  - The nav bar changed from sitting in normal document flow to `position: fixed`, floating
+    translucently over the video so the video can run truly full-bleed under it; it gains a
+    solid background once the page is scrolled. Anchor-link scrolling (`#impact`, `#timeline`,
+    etc.) has `scroll-padding-top` set so jumping to a section doesn't tuck its heading under
+    the fixed nav.
+
+## A real bug I found and fixed while building this
+While testing the new hero at mobile widths, its top spacing was silently collapsing to zero,
+crowding the headline against the nav bar. Root cause: a mobile media-query rule (`.wrap{
+padding: 0 20px; }`) used the `padding` **shorthand**, which resets `padding-top` and
+`padding-bottom` to `0` even though only the left/right values were meant to change — and
+because it appeared later in the stylesheet than the hero's own spacing rule, it won the
+cascade at narrow screens. Fixed by switching that rule to the `padding-left`/`padding-right`
+longhand properties instead, which only touch horizontal spacing. Worth knowing about if you
+add your own `.wrap` overrides later — prefer the longhand properties unless you genuinely
+want to reset all four sides.
 
 ## Content still needed from you
 Search the page for **`[Placeholder]`** and dashed **"Partner logo"** boxes — these mark spots
