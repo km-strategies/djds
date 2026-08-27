@@ -9,6 +9,7 @@ built from DJDS's own brand guide and photography.
 - `script.js` — scroll reveals, animated stat counters, hero video controls, timeline spine draw-on-scroll (all vanilla JS, no dependencies)
 - `assets/` — the photos/renderings you provided, resized and compressed for web
 - `assets/video/` — the compressed hero background video (`hero-bg.mp4`, `hero-bg.webm`) and its poster frame (`hero-poster.jpg`), generated from your uploaded `VideoSample-DJDSsm.mp4`
+- `assets/djds_project_map.gif` — the animated regional project map, used in the "Ten years, by the numbers" section
 
 Open `index.html` in a browser to preview it as-is.
 
@@ -69,6 +70,21 @@ cascade at narrow screens. Fixed by switching that rule to the `padding-left`/`p
 longhand properties instead, which only touch horizontal spacing. Worth knowing about if you
 add your own `.wrap` overrides later — prefer the longhand properties unless you genuinely
 want to reset all four sides.
+
+## New: project map in the impact section
+The "Ten years, by the numbers" section now includes your animated regional map
+(`djds_project_map.gif`) in a card below the stat grid, alongside a static text legend listing
+every region and project count. The legend exists for two reasons: it gives screen readers and
+anyone who can't watch a looping GIF a way to get the same information, and it means the data
+is still readable even if the GIF is slow to load or someone prints the page.
+
+**Numbers worth double-checking**: the map's regions add up to **25 projects** (8 + 5 + 3 + 3 +
+2 + 2 + 1 + 1), while the stat directly above it says **"50 projects completed nationwide."**
+I left both as provided rather than guessing which is right or silently changing one to match
+the other — but you'll likely want to reconcile them (e.g. "50" may include projects outside
+the 8 mapped regions, or the map may only reflect a subset like active/current projects) before
+this goes live, since having two different project counts a few inches apart on the page reads
+as a mistake to visitors.
 
 ## Content still needed from you
 Search the page for **`[Placeholder]`** and dashed **"Partner logo"** boxes — these mark spots
