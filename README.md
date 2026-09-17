@@ -3,49 +3,87 @@
 A static prototype styled after the IDEO.org "Ten Year Impact" scroll experience,
 built from DJDS's own brand guide and photography.
 
+## Most recent change
+The hero background video was swapped again — it now plays your `DJDS_Edit_2.mp4` (replacing
+`DJDS_Edit_1.mp4` from the round before). Same treatment as always: compressed into
+`hero-bg.mp4` (H.264, ~6.8MB) and `hero-bg.webm` (VP9, ~4.1MB) with a fresh `hero-poster.jpg`
+still frame, filenames unchanged so no HTML/CSS edits were needed. Note that Edit 1 and Edit 2
+share the exact same opening frame (same poster image either way) but are otherwise different
+files — worth a quick look to confirm the swap actually changed what plays for the rest of the
+loop, since I can't play video in this environment to verify content, only re-encode it.
+
+## Latest round of changes
+- **Typography**: your real **VTC Bayard** webfont is now installed (`assets/fonts/`) and
+  applied to the three actual `<h2>` headings on the page ("Infrastructure built with...",
+  "A decade in motion", "Invest in the next decade..."). Other display-style elements (the
+  hero, stat numbers, timeline years, CTA card headings) still use Anton as a stand-in — see
+  "Design notes" below for how to extend Bayard to those too, if you want it everywhere.
+- **Nav**: logo swapped to `DJDS_FullLogo_White.png`, sized 30% larger (28px → 36px tall),
+  background changed to solid `#0096AD`.
+- **Hero**: the "10 Years of Designing Justice" text is now the `djds10LockUp_Horizontal@2x.png`
+  logo image (kept inside an `<h1>` tag so the page still has one primary heading for
+  accessibility/SEO — screen readers get its alt text). The hand-drawn underline and the
+  chevron strip are removed. The background video is now your `DJDS_Edit_2.mp4`, compressed the
+  same way as before (MP4 + WebM + poster frame).
+- **Impact stats**: the LOVE Building photo now sits beside the section heading as a featured
+  image with a caption.
+- **Partners**: the `sketch-floorplan-teal.png` watermark is removed (and the file deleted,
+  since nothing else used it).
+- **Timeline**: back to a horizontal scrolling layout (was vertical in the last round), with
+  all 16 cards' real content intact — category tags, photos, and the two YouTube embeds. Every
+  card now uses a single accent color, `#76BC43`, instead of the rotating palette.
+- **What's Next**: your 10th-anniversary visioning salon collage
+  (`10thAnniv_Salon_Collage_web.jpg`, compressed from the original 12MB PNG down to ~510KB)
+  now sits between the quote and the three future-focus pillars, with a caption.
+- Removed several image files that were no longer referenced by anything on the page (old
+  local copies of Restore Oakland/LOVE Building photos, replaced earlier by the
+  `designingjustice.org`-hosted versions in your timeline content; two unused sketch-loop
+  tint variants) — kept the deliverable lean.
+
 ## What's here
 - `index.html` — full page markup + copy
 - `style.css` — all styling, using the exact palette/type from `DJDS_2026BrandGuidelines_v3.pdf`
-- `script.js` — scroll reveals, animated stat counters, hero video controls, timeline spine draw-on-scroll (all vanilla JS, no dependencies)
+- `script.js` — scroll reveals, animated stat counters, hero video controls, horizontal
+  timeline scroll-progress bar (all vanilla JS, no dependencies)
 - `assets/` — the photos/renderings you provided, resized and compressed for web
-- `assets/video/` — the compressed hero background video (`hero-bg.mp4`, `hero-bg.webm`) and its poster frame (`hero-poster.jpg`), generated from your uploaded `VideoSample-DJDSsm.mp4`
-- `assets/djds_project_map.gif` — the animated regional project map, used in the "Ten years, by the numbers" section
+- `assets/fonts/` — the real VTC Bayard webfont files (`.woff`, `.woff2`) from your
+  `bayard-web.zip`
+- `assets/video/` — the compressed hero background video (`hero-bg.mp4`, `hero-bg.webm`) and
+  its poster frame (`hero-poster.jpg`), generated from your uploaded `DJDS_Edit_2.mp4`
+- `assets/djds_project_map.gif` — the animated regional project map, used in the "Ten years, by
+  the numbers" section
 
 Open `index.html` in a browser to preview it as-is.
 
 ## Design notes
 - **Colors** are pulled 1:1 from the brand guide: DJDS Teal `#0096AD`, Charcoal `#292928`,
-  Orange `#F6921E`, plus the tertiary palette (Bright/Forest Green, Blue, Purple, Brown, Cork)
-  used as section colors throughout the timeline and CTA cards.
-- **Type**: Montserrat is used for all headers and body copy, per the guide. The guide reserves
-  **VTC Bayard** specifically for the 10th-anniversary campaign mark — that's a licensed font
-  I don't have access to, so I substituted **Anton** (a free, similarly bold condensed display
-  face) for the big numerals and section headlines. Swap the `font-display` variable in
-  `style.css` for VTC Bayard once you have a web-license/webfont file for it.
-- **Signature motif — hand-drawn sketches**: your own architectural sketches
-  (`RestoreOakland_FloorPlanSketch_BMP.tif` and the loose circles-and-arrows diagram) are now
-  woven through the site as design elements, not just documentation:
-  - Tinted, transparent versions of both sketches live in `assets/sketch-*.png` and appear as
-    faint full-bleed watermarks behind the hero, partners, and timeline sections.
-  - A small reusable SVG "sprite" (`#sk-circle`, `#sk-arrow`, `#sk-underline`, `#sk-mark`) at
-    the top of `index.html` recreates the loose, wobbly pen-line quality of the originals —
-    used as the hand-drawn underline beneath the hero headline, the circle "nodes" marking each
-    year on the timeline, the arrow that follows "Read the project" links, and a small asterisk
-    mark next to scroll hints. Because these are real SVG paths (not images), they scale
-    perfectly and can be recolored per-section just by changing `currentColor`.
-  - The chevron tile pattern from the LOVE Building's own facade is still used as a secondary
-    accent (hero divider strip, card top-borders).
-- **Vertical timeline**: replaced the earlier horizontal-scroll version with a vertical,
-  alternating-sides timeline. A hand-drawn, slightly wobbly line (built from your sketch's loose
-  line quality, not a straight vector) runs down the center and "draws" itself in as you scroll,
-  using a scroll-linked `stroke-dashoffset` animation. Each year sits in a hand-drawn circle node
-  on the spine, with cards alternating left/right — colors still rotate through the tertiary
-  palette per entry.
-- **Hero: full-bleed background video**. The top section now plays your supplied video
-  (`VideoSample-DJDSsm.mp4`) on a continuous muted loop behind the "10 Years of Designing
-  Justice" headline and lede copy, with a dark gradient overlay for text contrast. Details:
+  Orange `#F6921E`, plus the tertiary palette (Bright/Forest Green, Blue, Purple, Brown, Cork).
+- **Type**: Montserrat is used for all body copy, per the guide. **VTC Bayard**, the brand
+  guide's reserved campaign typeface, is now the real font (not a stand-in) — but it's only
+  wired up to the page's three `<h2>` headings, per your last request. Everything else that
+  reads as "display" text (the stat numbers, the timeline years, the CTA card headings) still
+  uses **Anton** as a free stand-in. If you'd like Bayard applied everywhere instead of just
+  H2s, the fix is one line: in `style.css`, change `--font-display: 'Anton', sans-serif;` to
+  `--font-display: 'VTC Bayard', 'Anton', sans-serif;` under `:root`.
+- **Signature motif — hand-drawn sketches**: one of your architectural sketches (the loose
+  circles-and-arrows diagram) still appears as a faint watermark behind the timeline section
+  (`assets/sketch-loops-teal.png`). The floor-plan sketch watermark that used to sit behind the
+  partners section has been removed per your last request, and its image file deleted since
+  nothing else used it. The small hand-drawn SVG sprite (`#sk-circle`, `#sk-arrow`, `#sk-mark`)
+  is still defined at the top of `index.html` and still used for the stat-card corner marks and
+  the timeline's scroll hint — `#sk-underline` is no longer used anywhere (the hero headline it
+  decorated was replaced by your logo lockup) but the symbol definition is harmless to leave in
+  place if you want to reuse it elsewhere later.
+- **Horizontal timeline**: the timeline scrolls horizontally again (it was briefly vertical in
+  an earlier round). All 16 cards carry your real milestone copy, category tags, photos, and
+  the two YouTube embeds (Five Keys Mobile Classroom, the TED talk). Every card now uses a
+  single accent color, `#76BC43`, for its top border, tag pill, and year numeral — that
+  replaced the earlier design where each card's color rotated through the tertiary palette.
+- **Hero: full-bleed background video**. The top section plays your `DJDS_Edit_2.mp4` on a
+  continuous muted loop, with the `djds10LockUp_Horizontal@2x.png` "10 Years of Designing
+  Justice" logo and lede copy on top, and a dark gradient overlay for contrast. Details:
   - The source video was compressed for web delivery into two formats in `assets/video/`:
-    `hero-bg.mp4` (H.264, ~2.5MB) and `hero-bg.webm` (VP9, ~1.7MB, tried first by browsers that
+    `hero-bg.mp4` (H.264, ~7MB) and `hero-bg.webm` (VP9, ~4.2MB, tried first by browsers that
     support it). `hero-poster.jpg` is a still frame shown instantly while the video loads.
   - A visible pause/play button (bottom-right of the hero) lets visitors stop the loop — this
     is a WCAG accessibility requirement for any auto-playing content that runs longer than 5
@@ -54,14 +92,17 @@ Open `index.html` in a browser to preview it as-is.
     level; they see the poster frame instead. It also auto-pauses whenever scrolled out of view
     to save battery/bandwidth, and resumes when scrolled back — unless the visitor manually
     paused it, in which case their choice is respected.
-  - The nav bar changed from sitting in normal document flow to `position: fixed`, floating
-    translucently over the video so the video can run truly full-bleed under it; it gains a
-    solid background once the page is scrolled. Anchor-link scrolling (`#impact`, `#timeline`,
-    etc.) has `scroll-padding-top` set so jumping to a section doesn't tuck its heading under
-    the fixed nav.
+  - The nav bar sits at `position: fixed` so the video can run truly full-bleed under it. It's
+    solid `#0096AD` (teal) at all scroll positions now, rather than the translucent-over-video
+    treatment from an earlier round. Anchor-link scrolling (`#impact`, `#timeline`, etc.) has
+    `scroll-padding-top` set so jumping to a section doesn't tuck its heading under the nav.
+  - The hero logo lockup (`djds10LockUp_Horizontal_2x.png`) is the **teal** version, not white
+    — that's the exact file you named. It sits inside an `<h1>` tag (with descriptive alt text)
+    rather than as a bare image, so the page keeps one semantic primary heading for
+    accessibility and SEO even though there's no longer any heading *text* in the hero.
 
 ## A real bug I found and fixed while building this
-While testing the new hero at mobile widths, its top spacing was silently collapsing to zero,
+While testing the hero at mobile widths, its top spacing was silently collapsing to zero,
 crowding the headline against the nav bar. Root cause: a mobile media-query rule (`.wrap{
 padding: 0 20px; }`) used the `padding` **shorthand**, which resets `padding-top` and
 `padding-bottom` to `0` even though only the left/right values were meant to change — and
@@ -71,20 +112,22 @@ longhand properties instead, which only touch horizontal spacing. Worth knowing 
 add your own `.wrap` overrides later — prefer the longhand properties unless you genuinely
 want to reset all four sides.
 
-## New: project map in the impact section
-The "Ten years, by the numbers" section now includes your animated regional map
-(`djds_project_map.gif`) in a card below the stat grid, alongside a static text legend listing
-every region and project count. The legend exists for two reasons: it gives screen readers and
+## Project map in the impact section
+The "Ten years, by the numbers" section is back to your **static/animated GIF** map
+(`djds_project_map.gif`) next to a static text legend, replacing the interactive iframe-embedded
+version from the previous round. The legend exists for two reasons: it gives screen readers and
 anyone who can't watch a looping GIF a way to get the same information, and it means the data
 is still readable even if the GIF is slow to load or someone prints the page.
 
-**Numbers worth double-checking**: the map's regions add up to **25 projects** (8 + 5 + 3 + 3 +
-2 + 2 + 1 + 1), while the stat directly above it says **"50 projects completed nationwide."**
-I left both as provided rather than guessing which is right or silently changing one to match
-the other — but you'll likely want to reconcile them (e.g. "50" may include projects outside
-the 8 mapped regions, or the map may only reflect a subset like active/current projects) before
-this goes live, since having two different project counts a few inches apart on the page reads
-as a mistake to visitors.
+I removed `djds_project_map.html` (the interactive version) from `assets/` since nothing
+references it anymore — if you want it back later, it's the file from your earlier upload and
+the same iframe-embed approach described in prior versions of this README would apply.
+
+**Numbers worth double-checking**: the map's eight regions add up to **25 projects** (8 + 5 + 3
++ 3 + 2 + 2 + 1 + 1), while the stat directly above it still says **"50 projects completed
+nationwide."** I left both as provided rather than guessing which is right or silently changing
+one to match the other — but you'll likely want to reconcile them before this goes live, since
+two different project counts a few inches apart on the page reads as a mistake to visitors.
 
 ## Content still needed from you
 Search the page for **`[Placeholder]`** and dashed **"Partner logo"** boxes — these mark spots
@@ -114,8 +157,10 @@ you sent — please don't publish the bracketed placeholder copy above as final.
   article you have rights to reproduce, or link out to the NYT article instead of embedding its
   photo.
 - The two 2018 entries now embed the actual YouTube videos (Five Keys Mobile Classroom and
-  Deanna Van Buren's TED talk) via responsive `<iframe>` embeds (`.vtl-video` in `style.css`),
+  Deanna Van Buren's TED talk) via responsive `<iframe>` embeds (`.tl-video` in `style.css`),
   rather than linking out.
+- `assets/djds_project_map.gif` is a plain image file — upload it to the WordPress Media
+  Library like any other image, no special handling needed.
 
 ## Getting this into WordPress
 This was built as a portable, dependency-free HTML/CSS/JS bundle so you have options:

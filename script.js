@@ -75,22 +75,6 @@ document.addEventListener('DOMContentLoaded', function () {
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  /* ---------- Timeline reveal (slide in from left/right) ---------- */
-  var sideEls = document.querySelectorAll('[data-reveal-side]');
-  if ('IntersectionObserver' in window && !reduceMotion) {
-    var sideIo = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          sideIo.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2, rootMargin: '0px 0px -60px 0px' });
-    sideEls.forEach(function (el) { sideIo.observe(el); });
-  } else {
-    sideEls.forEach(function (el) { el.classList.add('is-visible'); });
-  }
-
   /* ---------- Animated stat counters ---------- */
   var counters = document.querySelectorAll('[data-count-to]');
   function animateCount(el) {
@@ -135,28 +119,18 @@ document.addEventListener('DOMContentLoaded', function () {
     counters.forEach(animateCount);
   }
 
-  /* ---------- Timeline spine: hand-drawn line "draws" as you scroll ---------- */
-  var spinePath = document.getElementById('spine-draw');
-  var vtimeline = document.getElementById('vtimeline');
-  if (spinePath && vtimeline) {
-    if (reduceMotion) {
-      spinePath.style.strokeDashoffset = 0;
-    } else {
-      var pathLength = spinePath.getTotalLength();
-      spinePath.style.strokeDasharray = pathLength;
-      spinePath.style.strokeDashoffset = pathLength;
-      var updateSpine = function () {
-        var rect = vtimeline.getBoundingClientRect();
-        var vh = window.innerHeight || document.documentElement.clientHeight;
-        var total = rect.height + vh * 0.6;
-        var scrolled = vh * 0.85 - rect.top;
-        var progress = Math.max(0, Math.min(1, scrolled / total));
-        spinePath.style.strokeDashoffset = pathLength * (1 - progress);
-      };
-      window.addEventListener('scroll', updateSpine, { passive: true });
-      window.addEventListener('resize', updateSpine);
-      updateSpine();
-    }
+  /* ---------- Timeline scroll progress (horizontal) ---------- */
+  var track = document.getElementById('timelineTrack');
+  var bar = document.querySelector('.timeline-progress-bar');
+  if (track && bar) {
+    var updateBar = function () {
+      var max = track.scrollWidth - track.clientWidth;
+      var pct = max > 0 ? (track.scrollLeft / max) * 100 : 0;
+      bar.style.width = Math.max(6, pct) + '%';
+    };
+    track.addEventListener('scroll', updateBar, { passive: true });
+    window.addEventListener('resize', updateBar);
+    updateBar();
   }
 
   /* ---------- Mobile nav toggle ---------- */
