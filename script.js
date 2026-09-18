@@ -133,6 +133,51 @@ document.addEventListener('DOMContentLoaded', function () {
     updateBar();
   }
 
+  /* ---------- Partner quote carousel ---------- */
+  var carousel = document.querySelector('[data-carousel]');
+  if (carousel) {
+    var slides = Array.prototype.slice.call(carousel.querySelectorAll('[data-slide]'));
+    var dots = Array.prototype.slice.call(carousel.querySelectorAll('.quote-dot'));
+    var prevBtn = carousel.querySelector('.quote-prev');
+    var nextBtn = carousel.querySelector('.quote-next');
+    var current = 0;
+    var autoplayMs = 8000;
+    var timer = null;
+
+    function goTo(index) {
+      index = (index + slides.length) % slides.length;
+      slides[current].classList.remove('is-active');
+      dots[current].classList.remove('is-active');
+      dots[current].setAttribute('aria-selected', 'false');
+      current = index;
+      slides[current].classList.add('is-active');
+      dots[current].classList.add('is-active');
+      dots[current].setAttribute('aria-selected', 'true');
+    }
+
+    function startAutoplay() {
+      if (reduceMotion) return;
+      stopAutoplay();
+      timer = setInterval(function () { goTo(current + 1); }, autoplayMs);
+    }
+    function stopAutoplay() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); startAutoplay(); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); startAutoplay(); });
+    dots.forEach(function (dot, i) {
+      dot.addEventListener('click', function () { goTo(i); startAutoplay(); });
+    });
+
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+    carousel.addEventListener('focusin', stopAutoplay);
+    carousel.addEventListener('focusout', startAutoplay);
+
+    startAutoplay();
+  }
+
   /* ---------- Mobile nav toggle ---------- */
   var toggle = document.querySelector('.nav-toggle');
   var nav = document.querySelector('.site-nav nav');

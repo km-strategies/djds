@@ -3,21 +3,79 @@
 A static prototype styled after the IDEO.org "Ten Year Impact" scroll experience,
 built from DJDS's own brand guide and photography.
 
-## Most recent change
-The hero background video was swapped again — it now plays your `DJDS_Edit_2.mp4` (replacing
-`DJDS_Edit_1.mp4` from the round before). Same treatment as always: compressed into
-`hero-bg.mp4` (H.264, ~6.8MB) and `hero-bg.webm` (VP9, ~4.1MB) with a fresh `hero-poster.jpg`
-still frame, filenames unchanged so no HTML/CSS edits were needed. Note that Edit 1 and Edit 2
-share the exact same opening frame (same poster image either way) but are otherwise different
-files — worth a quick look to confirm the swap actually changed what plays for the rest of the
-loop, since I can't play video in this environment to verify content, only re-encode it.
+## Most recent changes
+- **Impact Stats section**: three changes —
+  1. Removed the LOVE Building photo that sat beside the section heading (the file,
+     `Love-Building2024_N4_crop.png`, is also deleted from `assets/` since nothing else used it).
+  2. The project map card (GIF + region legend) is now hidden rather than deleted — it still
+     has all its markup in `index.html`, just with an `is-hidden` class added
+     (`display:none !important` in `style.css`). If you want it back, delete `is-hidden` from
+     the `<div class="stats-map is-hidden" ...>` line and it reappears exactly as before, with
+     no rebuilding needed.
+  3. Added your new `DJDS_Microsite-Collage.png` as a full-bleed image banner at the very
+     bottom of the section — it runs edge-to-edge, breaking out of the page's normal
+     max-width container the way a hero image does, and its transparent background lets the
+     section's teal show through the gaps between photos rather than showing a white box.
+
+## Previous changes
+- **Timeline overhaul**: expanded from 16 to **25 entries**, now spanning **2016–2026** (was
+  2016–2025) — several 2019/2020 years split into more granular milestones (Atlanta Center for
+  Equity, the Mobile Refuge Room patent, the Detroit land purchase, the LA County Youth Justice
+  Working Group), three new 2023–2024 entries (the post-occupancy evaluation, the Pop-Up
+  Village's transition to community ownership, and dropping the CTE TAY Hub / Gulf Coast entries
+  that aren't in your latest content), and three brand-new 2025–2026 entries reaching a year
+  further out than before (the MCI Concord prison feasibility study, youth-advocate workshops,
+  and the Gateways Hospital behavioral-health partnership). The "2020 Spotlight" card's image
+  is now your own `DeannaNYT.jpg` photo instead of a hot-linked New York Times CDN image — a
+  direct improvement, since I'd flagged that hot-link as fragile/risky in an earlier round.
+  Two entries reference images that weren't real files/URLs (noted inline below); those two
+  cards are text-only for now. The timeline's eyebrow label and section heading date range are
+  both updated to match.
+
+## Previous changes
+- **Partners + testimonials merged**: the quote carousel is no longer a separate dark section —
+  it's now part of the "Partners" section itself, sitting below the logo grid on the same warm
+  paper background, separated by a thin divider line. The carousel content moved into a light
+  card (white background, subtle border and shadow) instead of the dark charcoal panel it had
+  before, so text/accent colors switched from white/bright-green to charcoal/forest-green for
+  contrast on the lighter surface. Functionality (auto-advance, arrows, dots, reduced-motion
+  handling) is unchanged — this was a visual/structural change only.
+- **Nav**: both "Donate" buttons (the nav bar and the "Give now" button in the CTA section)
+  now link out to `https://designingjustice.org/donate/` in a new tab, instead of scrolling to
+  the on-page giving section. Nav items (Impact / Timeline / What's Next / Donate) are now
+  vertically centered against each other regardless of the Donate button's extra padding —
+  previously they could sit slightly off from each other since the nav's flex children
+  defaulted to stretching instead of centering.
+- **Partners**: added a testimonial carousel (inside the Partners section — see above) cycling
+  through your four supplied quotes (Judge Songhai Armstead, Michaela Pommels, Adam Menter,
+  Adrienne Hogg). Auto-advances every 8 seconds, pauses on hover/focus, and has prev/next
+  arrows plus clickable dots for manual control. It never auto-advances for visitors with
+  `prefers-reduced-motion` set — they still get full manual control via the arrows/dots. This
+  section uses a 4th real `<h2>` ("Partners in the work"), so it now also uses the VTC Bayard
+  font like the other three headings, for consistency.
+- **Timeline**: added your two-paragraph origin story (Deanna Van Buren, the Syracuse
+  Peacemaking Center, the Fetzer Institute funding) as intro copy above the horizontal
+  timeline track.
+- **What's Next**: replaced the placeholder quote with Deanna Van Buren's real one. Because the
+  real quote is a full paragraph rather than a short pull-quote, I sized it down from the huge
+  display-font treatment the placeholder used (which would have rendered enormous and
+  hard to read at that length) to a more readable size — still visually distinct from body
+  copy, just not shouting. Attribution updated to match exactly what you sent ("Co-Founder &
+  Executive Director" — the placeholder had said "Founder & Co-Executive Director").
+- **Hero video**: also swapped again in this round — it now plays `DJDS_Edit_2.mp4` (replacing
+  `DJDS_Edit_1.mp4`). Compressed the same way as always into `hero-bg.mp4`/`hero-bg.webm` with
+  a fresh `hero-poster.jpg`. Worth knowing: Edit 1 and Edit 2 share the exact same opening frame
+  and are very close in duration/file size, so it's worth a quick look to confirm the new file
+  actually contains the footage you meant to swap in — I can only re-encode video in this
+  environment, not play it back to verify content.
 
 ## Latest round of changes
 - **Typography**: your real **VTC Bayard** webfont is now installed (`assets/fonts/`) and
-  applied to the three actual `<h2>` headings on the page ("Infrastructure built with...",
-  "A decade in motion", "Invest in the next decade..."). Other display-style elements (the
-  hero, stat numbers, timeline years, CTA card headings) still use Anton as a stand-in — see
-  "Design notes" below for how to extend Bayard to those too, if you want it everywhere.
+  applied to the real `<h2>` headings on the page ("Infrastructure built with...",
+  "A decade in motion", "Partners in the work", "Invest in the next decade..." — four as of
+  the latest round, since the new testimonial carousel added one). Other display-style elements
+  (the hero, stat numbers, timeline years, CTA card headings) still use Anton as a stand-in —
+  see "Design notes" below for how to extend Bayard to those too, if you want it everywhere.
 - **Nav**: logo swapped to `DJDS_FullLogo_White.png`, sized 30% larger (28px → 36px tall),
   background changed to solid `#0096AD`.
 - **Hero**: the "10 Years of Designing Justice" text is now the `djds10LockUp_Horizontal@2x.png`
@@ -50,8 +108,10 @@ loop, since I can't play video in this environment to verify content, only re-en
   `bayard-web.zip`
 - `assets/video/` — the compressed hero background video (`hero-bg.mp4`, `hero-bg.webm`) and
   its poster frame (`hero-poster.jpg`), generated from your uploaded `DJDS_Edit_2.mp4`
-- `assets/djds_project_map.gif` — the animated regional project map, used in the "Ten years, by
-  the numbers" section
+- `assets/djds_project_map.gif` — the animated regional project map. Currently hidden (see
+  "Most recent changes" above) but still present in the markup.
+- `assets/DJDS_Microsite-Collage.png` — the full-bleed photo banner at the bottom of the
+  "Ten years, by the numbers" section
 
 Open `index.html` in a browser to preview it as-is.
 
@@ -136,14 +196,21 @@ that still need real content before launch:
   the counter script now recognizes non-numeric placeholders like `XXX` and displays them with
   a dashed underline instead of animating, so it's visually obvious this needs a real number
   before launch (see `.stat-pending` in `style.css`).
-- The "What's Next" quote from Deanna Van Buren and the three future-focus pillars
-- Donate / Partner copy blocks
+- The three future-focus pillars in "What's Next" (the quote above them is now real)
+- Donate / Partner copy blocks (the paragraph text inside those two CTA cards)
 - Partner & funder logos (swap the dashed placeholder boxes in the `.logo-grid` for `<img>` tags)
-- Real links for Donate, Partner, and social icons (currently `#`)
+- A real link for the "Start a conversation" Partner button and the three social icons
+  (Instagram/LinkedIn/X) — currently `#`. Both Donate buttons are now live and point to
+  `designingjustice.org/donate/`.
 
-The 2016–2025 timeline (16 entries) now uses your latest copy, category tags, image sources, and
-video embeds exactly as provided. I didn't invent any stats, quotes, or milestones beyond what
-you sent — please don't publish the bracketed placeholder copy above as final.
+The 2016–2026 timeline (25 entries) now uses your latest copy, category tags, image sources, and
+video embeds exactly as provided. Two entries note an image source that wasn't a usable file or
+URL — "DJDS Purchases Land in Detroit" (2019, noted as "Image of LOVE letter with CAB on the
+site") and "Pop-Up Village Transitions to Community Organization" (2024, noted as "Kaselah at
+the pop-up, or something from the site") — so those two cards currently run text-only. Send the
+actual image files when you have them and I'll drop them in. I didn't invent any stats, quotes,
+or milestones beyond what you sent — please don't publish the bracketed placeholder copy above
+as final.
 
 ## About the timeline's images and videos
 - Several timeline images are hot-linked directly to `designingjustice.org` — that's fine since
