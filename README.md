@@ -4,6 +4,29 @@ A static prototype styled after the IDEO.org "Ten Year Impact" scroll experience
 built from DJDS's own brand guide and photography.
 
 ## Most recent changes
+- **"What's Next" is now a hero-style section**: the salon collage photo and Deanna's quote
+  used to be two separate stacked blocks (quote first, image below with a caption). They're now
+  one full-bleed hero: the collage runs edge-to-edge as a background image, with a dark
+  gradient scrim over it and the eyebrow, quote, attribution, and a small caption all overlaid
+  directly on top of the photo in white text — the same visual language as the page's actual
+  top hero (photo/video background + text on top), just used again here for this section.
+
+## A real bug I found and fixed while building this
+While testing the new hero's dark overlay, it wasn't rendering at all — the collage photo
+showed through at full brightness with no darkening, which would have made the white quote
+text unreadable in a real browser. Root cause: the overlay `<div>` used the CSS `inset: 0`
+shorthand (short for `top:0; right:0; bottom:0; left:0;`) to size itself to fill its parent,
+and in my testing environment that shorthand silently failed to apply. That's concerning
+because I had used the exact same `inset: 0` pattern for the *actual* top-of-page hero's video
+overlay and a couple of other spots already shipped in earlier rounds — those happened to look
+fine only because their fallback background color was already dark, so a missing overlay was
+invisible there. This new section, sitting on top of a bright, busy photo, is what exposed the
+gap. I replaced every `inset: 0` in `style.css` with the explicit longhand (`top`, `right`,
+`bottom`, `left`) — seven occurrences total, including the main hero's video overlay, the two
+timeline video embeds, and this new section — so the fix applies everywhere the pattern was
+used, not just here.
+
+## Previous changes
 - **Funders section moved into "Join us"**: the funder logos are no longer their own
   full-width `<section>` sitting between "What's Next" and the CTA — they're now the first
   thing inside the dark "Join us" section itself, right above "Invest in the next decade of
