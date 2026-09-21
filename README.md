@@ -4,6 +4,34 @@ A static prototype styled after the IDEO.org "Ten Year Impact" scroll experience
 built from DJDS's own brand guide and photography.
 
 ## Most recent changes
+- **Funders section moved into "Join us"**: the funder logos are no longer their own
+  full-width `<section>` sitting between "What's Next" and the CTA — they're now the first
+  thing inside the dark "Join us" section itself, right above "Invest in the next decade of
+  healing-centered infrastructure." Since many of the funder logos use dark/black text (Ford
+  Foundation, Hellman Foundation, Mellon Foundation, etc.), placing them directly on the CTA
+  section's charcoal background would make them unreadable — so they now sit inside a light
+  card (`.cta-funders` in `style.css`: paper background, rounded corners, drop shadow) that
+  floats within the dark section, the same pattern already used for the testimonial carousel
+  inside the Partners section. The eyebrow, heading, and image are unchanged — only their
+  container and background changed.
+
+## Previous changes
+- **Real partner logos**: the dashed "Partner logo" placeholder grid in the Partners section is
+  replaced with your actual `DJDS_PartnerLogosClient_2x.png` — a single pre-composed image
+  (~30 client/community-partner logos), sized to a comfortable max-width and centered.
+- **Testimonial heading removed**: the "In their words / Partners in the work" eyebrow and
+  heading above the quote carousel are gone. The carousel itself (all four testimonials, the
+  auto-advance, arrows, dots) is unchanged — only that heading text was removed. Since that was
+  one of the page's four real `<h2>` elements, the count is back down to **three** H2s using the
+  VTC Bayard font (matching the original "three H2s" instruction from a few rounds back).
+- **New Funders section**: added right above "Invest in the next decade of healing-centered
+  infrastructure," using the same visual treatment as the Partners logo section — an eyebrow
+  ("With support from"), a heading, and your `DJDS_PartnerLogosFunders_2x.png` image (~24
+  foundation/funder logos). It's its own `<section>` (reuses the `.partners` styling via a
+  second `funders` class) so it can be reordered or removed independently of the CTA section
+  below it.
+
+## Previous changes
 - **Impact Stats section**: three changes —
   1. Removed the LOVE Building photo that sat beside the section heading (the file,
      `Love-Building2024_N4_crop.png`, is also deleted from `assets/` since nothing else used it).
@@ -112,6 +140,10 @@ built from DJDS's own brand guide and photography.
   "Most recent changes" above) but still present in the markup.
 - `assets/DJDS_Microsite-Collage.png` — the full-bleed photo banner at the bottom of the
   "Ten years, by the numbers" section
+- `assets/DJDS_PartnerLogosClient_2x.png` — client/community partner logos, in the Partners
+  section
+- `assets/DJDS_PartnerLogosFunders_2x.png` — foundation/funder logos, now inside a light card
+  at the top of the "Join us" CTA section
 
 Open `index.html` in a browser to preview it as-is.
 
@@ -190,7 +222,7 @@ one to match the other — but you'll likely want to reconcile them before this 
 two different project counts a few inches apart on the page reads as a mistake to visitors.
 
 ## Content still needed from you
-Search the page for **`[Placeholder]`** and dashed **"Partner logo"** boxes — these mark spots
+Search the page for **`[Placeholder]`** bracketed text — these mark spots
 that still need real content before launch:
 - The **`$XXXM+`** stat in the impact section — you flagged the $157M+ figure as unverified;
   the counter script now recognizes non-numeric placeholders like `XXX` and displays them with
@@ -198,7 +230,6 @@ that still need real content before launch:
   before launch (see `.stat-pending` in `style.css`).
 - The three future-focus pillars in "What's Next" (the quote above them is now real)
 - Donate / Partner copy blocks (the paragraph text inside those two CTA cards)
-- Partner & funder logos (swap the dashed placeholder boxes in the `.logo-grid` for `<img>` tags)
 - A real link for the "Start a conversation" Partner button and the three social icons
   (Instagram/LinkedIn/X) — currently `#`. Both Donate buttons are now live and point to
   `designingjustice.org/donate/`.
