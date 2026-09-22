@@ -538,6 +538,32 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 }
 
 .timeline-track-outer{ position:relative; z-index:1; }
+
+.timeline-arrow{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,.4);
+  background: rgba(20,20,19,.72);
+  backdrop-filter: blur(3px);
+  color: #fff;
+  display: flex; align-items:center; justify-content:center;
+  cursor: pointer;
+  transition: border-color .2s ease, background .2s ease, opacity .2s ease;
+}
+.timeline-arrow svg{ width: 20px; height: 20px; }
+.timeline-arrow:hover{ border-color: var(--bright-green); background: rgba(20,20,19,.9); }
+.timeline-arrow:disabled{ opacity:.35; cursor:default; }
+.timeline-arrow:disabled:hover{ border-color: rgba(255,255,255,.4); background: rgba(20,20,19,.72); }
+.timeline-prev{ left: 4px; }
+.timeline-next{ right: 4px; }
+@media (max-width: 760px){
+  .timeline-arrow{ width: 40px; height: 40px; }
+  .timeline-arrow svg{ width: 17px; height: 17px; }
+}
 .timeline-progress{
   height:3px; background: rgba(255,255,255,.15); border-radius:2px; margin: 0 0 26px;
   overflow:hidden;
@@ -552,7 +578,8 @@ a:focus-visible, button:focus-visible, input:focus-visible{
   gap: 26px;
   overflow-x: auto;
   scroll-snap-type: x proximity;
-  padding-bottom: 28px;
+  padding: 0 60px 28px;
+  scroll-padding-left: 60px;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: var(--bright-green) rgba(255,255,255,.1);
@@ -563,8 +590,8 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 
 .tl-card{
   scroll-snap-align: start;
-  flex: 0 0 320px;
-  width: 320px;
+  flex: 0 0 420px;
+  width: 420px;
   background: #333331;
   border-radius: 16px;
   overflow:hidden;

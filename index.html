@@ -231,7 +231,7 @@
         </div>
         <div class="timeline-nav-hint">
           <svg class="sk-icon" viewBox="0 0 40 40" aria-hidden="true"><use href="#sk-mark" xlink:href="#sk-mark"/></svg>
-          Scroll horizontally to follow the thread
+          Scroll or use the arrows to follow the thread
         </div>
       </div>
       <p class="timeline-intro" data-reveal>
@@ -243,6 +243,9 @@
     </div>
 
     <div class="timeline-track-outer wrap">
+      <button type="button" class="timeline-arrow timeline-prev" aria-label="Scroll to earlier milestones">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
       <div class="timeline-track" id="timelineTrack" tabindex="0" aria-label="DJDS ten-year timeline, scroll horizontally">
 
         <article class="tl-card">
@@ -481,6 +484,9 @@
 
 
       </div>
+      <button type="button" class="timeline-arrow timeline-next" aria-label="Scroll to later milestones">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
     </div>
   </section>
 

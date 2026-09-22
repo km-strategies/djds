@@ -4,6 +4,17 @@ A static prototype styled after the IDEO.org "Ten Year Impact" scroll experience
 built from DJDS's own brand guide and photography.
 
 ## Most recent changes
+- **Timeline cards are wider** (320px → 420px), giving the longer milestone write-ups more
+  breathing room per card and making photos/video embeds inside them bigger too.
+- **Click-to-navigate arrows** added on either side of the timeline. Previously the only way
+  through the 25 cards was dragging/swiping or the native scrollbar; there are now real
+  previous/next buttons (`.timeline-prev` / `.timeline-next` in `style.css`) that scroll by
+  exactly one card-width at a time, smoothly. They automatically grey out and stop responding
+  once you've reached the first or last card, so it's always clear when you've hit either end.
+  They also respect `prefers-reduced-motion` (the scroll jumps instantly instead of animating
+  for those visitors) and work from the keyboard, since they're real `<button>` elements.
+
+## Previous changes
 - **"What's Next" is now a hero-style section**: the salon collage photo and Deanna's quote
   used to be two separate stacked blocks (quote first, image below with a caption). They're now
   one full-bleed hero: the collage runs edge-to-edge as a background image, with a dark

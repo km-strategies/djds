@@ -119,18 +119,38 @@ document.addEventListener('DOMContentLoaded', function () {
     counters.forEach(animateCount);
   }
 
-  /* ---------- Timeline scroll progress (horizontal) ---------- */
+  /* ---------- Timeline scroll progress (horizontal) + arrow navigation ---------- */
   var track = document.getElementById('timelineTrack');
   var bar = document.querySelector('.timeline-progress-bar');
+  var tlPrev = document.querySelector('.timeline-prev');
+  var tlNext = document.querySelector('.timeline-next');
+
   if (track && bar) {
     var updateBar = function () {
       var max = track.scrollWidth - track.clientWidth;
       var pct = max > 0 ? (track.scrollLeft / max) * 100 : 0;
       bar.style.width = Math.max(6, pct) + '%';
+
+      if (tlPrev && tlNext) {
+        tlPrev.disabled = track.scrollLeft <= 2;
+        tlNext.disabled = track.scrollLeft >= max - 2;
+      }
     };
     track.addEventListener('scroll', updateBar, { passive: true });
     window.addEventListener('resize', updateBar);
     updateBar();
+  }
+
+  if (track && tlPrev && tlNext) {
+    var scrollByCard = function (direction) {
+      var firstCard = track.querySelector('.tl-card');
+      var cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 420;
+      var gapStr = window.getComputedStyle(track).columnGap || window.getComputedStyle(track).gap || '26px';
+      var gap = parseFloat(gapStr) || 26;
+      track.scrollBy({ left: direction * (cardWidth + gap), behavior: reduceMotion ? 'auto' : 'smooth' });
+    };
+    tlPrev.addEventListener('click', function () { scrollByCard(-1); });
+    tlNext.addEventListener('click', function () { scrollByCard(1); });
   }
 
   /* ---------- Partner quote carousel ---------- */
