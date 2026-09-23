@@ -4,6 +4,47 @@ A static prototype styled after the IDEO.org "Ten Year Impact" scroll experience
 built from DJDS's own brand guide and photography.
 
 ## Most recent changes
+- **"What's Next" now has two headings.** The small orange "WHAT'S NEXT" label is back to an
+  `<h3>` (it had briefly been an `<h2>` in the round before this one). Underneath it there's now
+  a real `<h2>`, **"Imagine, Design, Build, Own,"** styled to match "A Decade in Motion" exactly
+  — same font-family (VTC Bayard, `--font-h2`), same uppercase treatment, weight, and responsive
+  size (`.next-hero-title` in `style.css` reuses `.timeline-head h2`'s exact values). Only the
+  color and a text-shadow differ, since this one sits on top of the salon photo rather than a
+  plain dark panel, so it needed to stay legible against a busy background the same way the
+  quote text below it does.
+
+## Previous changes
+- **Started from your edited HTML upload**, not the previous round's file — I kept the edits
+  you'd already made yourself: the shortened timeline intro paragraph, your rewritten "What's
+  Next" quote, and the three pillar titles you filled in (Building Spaces / Building the Field /
+  Building Capacity). One small fix while I was in there: your rewritten quote had the literal
+  text `[paragraph break]` sitting in the middle of it — that reads like a placeholder marker
+  left over from drafting, so I turned it into an actual line break instead of publishing the
+  bracketed text as visible copy. Flagging it in case that wasn't intentional.
+- **Placeholder images added to every timeline card that had neither a photo nor a video** — 15
+  of the 25 cards (2016, Atlanta Center for Equity, the product-design/patent story, the Detroit
+  land purchase, both 2020 policy entries, FLOW, the LA County Youth Justice group, the 2021
+  expansion, the post-occupancy evaluation, the Pop-Up Village transition, and all four
+  2025–2026 entries) now show your `Placeholder_Image.png`. Swap each one out individually by
+  searching `index.html` for `Placeholder_Image.png` and replacing that specific `<img src>`
+  with the real photo/video once you have it — the alt text on each (*"Placeholder image — final
+  photo or video for this milestone coming soon"*) is there so it's obvious in a screen reader
+  or view-source which ones still need real media.
+- **Placeholder images added to all three "What's Next" focus-area cards** too. This required a
+  small structural change to the pillar cards (`.pillar` in `style.css`) since they didn't have
+  an image slot before — each card now has a 16:9 image area at the top (`.pillar-media`) above
+  the number/heading/description (`.pillar-body`), with the colored accent bar still visible as
+  a thin strip above the image.
+- **"What's Next" heading is now an `<h2>`** (it was a `<span>` styled to look like the small
+  "eyebrow" label used throughout the site — there wasn't actually an `<h3>` there before, but
+  the effect is the same: it's now a real heading rather than a plain span). Visually it's
+  unchanged — same small caps orange label — since only the semantic tag changed, not the
+  styling. It doesn't use the VTC Bayard font like the page's other four H2s, since applying a
+  large display typeface to what's meant to read as a small label would look inconsistent; if
+  you'd rather it look and act like a full-size section heading, say so and I'll restyle it to
+  match "A decade in motion" and friends.
+
+## Previous changes
 - **Timeline cards are wider** (320px → 420px), giving the longer milestone write-ups more
   breathing room per card and making photos/video embeds inside them bigger too.
 - **Click-to-navigate arrows** added on either side of the timeline. Previously the only way
@@ -178,6 +219,8 @@ used, not just here.
   section
 - `assets/DJDS_PartnerLogosFunders_2x.png` — foundation/funder logos, now inside a light card
   at the top of the "Join us" CTA section
+- `assets/Placeholder_Image.png` — your magenta "10 Years" placeholder graphic, used on every
+  timeline card and pillar card that doesn't have real media yet
 
 Open `index.html` in a browser to preview it as-is.
 
@@ -262,7 +305,10 @@ that still need real content before launch:
   the counter script now recognizes non-numeric placeholders like `XXX` and displays them with
   a dashed underline instead of animating, so it's visually obvious this needs a real number
   before launch (see `.stat-pending` in `style.css`).
-- The three future-focus pillars in "What's Next" (the quote above them is now real)
+- The three "What's Next" pillar cards now have real titles, but their description text and
+  images are still placeholders (`[Placeholder — describe...]` copy and `Placeholder_Image.png`)
+- Every timeline card and pillar card still showing `Placeholder_Image.png` (15 timeline cards
+  + all 3 pillar cards — see "Most recent changes" above for the full timeline list)
 - Donate / Partner copy blocks (the paragraph text inside those two CTA cards)
 - A real link for the "Start a conversation" Partner button and the three social icons
   (Instagram/LinkedIn/X) — currently `#`. Both Donate buttons are now live and point to

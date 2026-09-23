@@ -683,7 +683,17 @@ a:focus-visible, button:focus-visible, input:focus-visible{
   padding: 56px 48px;
   max-width: 860px;
 }
-.next-hero-content .eyebrow{ color: var(--orange); margin-bottom: 14px; display:block; }
+.next-hero-content .eyebrow{ color: var(--orange); margin: 0 0 14px; display:block; }
+.next-hero-title{
+  font-family: var(--font-h2);
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: clamp(30px, 4.4vw, 50px);
+  line-height: 1;
+  color: #fff;
+  margin: 0 0 22px;
+  text-shadow: 0 2px 18px rgba(0,0,0,.4);
+}
 .next-hero-content .next-quote{ max-width: none; margin: 0 0 18px; }
 .next-hero-content .next-quote blockquote{
   color: #fff;
@@ -730,16 +740,25 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 .pillar{
   background: #fff;
   border-radius: 16px;
-  padding: 32px 28px;
   border: 1px solid #EAE2CB;
   position:relative;
   overflow:hidden;
+  display:flex; flex-direction:column;
 }
 .pillar::before{
   content:"";
   position:absolute; top:0; left:0; right:0; height:6px;
   background: var(--p-color, var(--teal));
+  z-index: 2;
 }
+.pillar-media{
+  position:relative; z-index:1;
+  aspect-ratio: 16/9;
+  overflow:hidden;
+  background: #F1EADA;
+}
+.pillar-media img{ width:100%; height:100%; object-fit:cover; display:block; }
+.pillar-body{ padding: 24px 28px 32px; flex:1; }
 .pillar .p-num{
   font-family: var(--font-display);
   font-size: 15px;
