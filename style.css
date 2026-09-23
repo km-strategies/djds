@@ -647,43 +647,20 @@ a:focus-visible, button:focus-visible, input:focus-visible{
    WHAT'S NEXT
    ========================================================= */
 .next{
-  background: var(--paper);
-  padding: 0 0 100px;
+  background: var(--purple);
+  padding: 100px 0;
+  border-top: 1px solid rgba(255,255,255,.08);
 }
-.next .eyebrow{ color: var(--purple); }
+.next .eyebrow{ color: #fff; }
 
-.next-hero{
-  position: relative;
-  overflow: hidden;
-  min-height: 560px;
-  display: flex;
+.next-row{
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 56px;
   align-items: center;
   margin-bottom: 72px;
 }
-.next-hero-media{
-  position: absolute; top:0; right:0; bottom:0; left:0;
-  z-index: 0;
-}
-.next-hero-media img{
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-  display: block;
-}
-.next-hero-overlay{
-  position: absolute; top:0; right:0; bottom:0; left:0;
-  z-index: 1;
-  background:
-    linear-gradient(rgba(20,20,19,.8), rgba(20,20,19,.8)),
-    linear-gradient(to top, rgba(20,20,19,.35), transparent 55%);
-}
-.next-hero-content{
-  position: relative;
-  z-index: 2;
-  padding: 56px 48px;
-  max-width: 860px;
-}
-.next-hero-content .eyebrow{ color: var(--orange); margin: 0 0 14px; display:block; }
+.next-text .eyebrow{ margin: 0 0 14px; display:block; }
 .next-hero-title{
   font-family: var(--font-h2);
   text-transform: uppercase;
@@ -691,46 +668,48 @@ a:focus-visible, button:focus-visible, input:focus-visible{
   font-size: clamp(30px, 4.4vw, 50px);
   line-height: 1;
   color: #fff;
-  margin: 0 0 22px;
-  text-shadow: 0 2px 18px rgba(0,0,0,.4);
-}
-.next-hero-content .next-quote{ max-width: none; margin: 0 0 18px; }
-.next-hero-content .next-quote blockquote{
-  color: #fff;
-  font-size: clamp(17px, 1.9vw, 23px);
-  text-shadow: 0 2px 18px rgba(0,0,0,.4);
-}
-.next-hero-content .next-quote cite{ color: #F3F0E6; }
-.next-hero-content .next-quote cite span{ color: rgba(255,255,255,.65); }
-.next-hero-caption{
-  margin: 0;
-  font-size: 12.5px;
-  color: rgba(255,255,255,.6);
-  max-width: 60ch;
-}
-@media (max-width: 640px){
-  .next-hero{ min-height: 620px; }
-  .next-hero-content{ padding: 36px 24px; }
+  margin: 0 0 24px;
 }
 
 .next-quote{
-  max-width: 900px;
-  margin: 18px 0 56px;
+  max-width: none;
+  margin: 0;
 }
 .next-quote blockquote{
   font-family: var(--font-body);
   font-weight:600;
   font-style: normal;
-  font-size: clamp(19px, 2.1vw, 25px);
+  font-size: clamp(18px, 1.9vw, 23px);
   line-height: 1.55;
   margin: 0 0 20px;
-  color: var(--charcoal);
+  color: #fff;
 }
 .next-quote cite{
-  font-style:normal; font-weight:700; font-size:14px; color: var(--charcoal-tint);
+  font-style:normal; font-weight:700; font-size:14px; color: #F3F0E6;
   display:block;
 }
-.next-quote cite span{ display:block; font-weight:500; color:#A79E88; font-size:13px; margin-top:2px;}
+.next-quote cite span{ display:block; font-weight:500; color: rgba(255,255,255,.65); font-size:13px; margin-top:2px;}
+
+.next-image{
+  margin: 0;
+}
+.next-image img{
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 20px 34px rgba(0,0,0,.35));
+}
+.next-image figcaption{
+  margin-top: 14px;
+  font-size: 12.5px;
+  line-height:1.5;
+  color: rgba(255,255,255,.65);
+}
+
+@media (max-width: 900px){
+  .next-row{ grid-template-columns: 1fr; gap: 36px; }
+  .next-image{ order: -1; }
+}
 
 .pillars{
   display:grid;
@@ -772,7 +751,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 /* =========================================================
    CTA
    ========================================================= */
-.cta{ padding: 100px 0 40px; background: var(--charcoal); color:#fff; }
+.cta{ padding: 100px 0 40px; background: var(--charcoal); color:#fff; border-top: 1px solid rgba(255,255,255,.08); }
 .cta .eyebrow{ color: var(--bright-green); }
 
 /* light card so the funder logos (many with dark/black text) stay legible

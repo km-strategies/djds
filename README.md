@@ -4,6 +4,91 @@ A static prototype styled after the IDEO.org "Ten Year Impact" scroll experience
 built from DJDS's own brand guide and photography.
 
 ## Most recent changes
+- **Six timeline placeholders replaced with your real photos**, matched by the year/name in
+  each filename: `2016_DJDS_Founded.JPG` → "DJDS Founded in Oakland," `2024_PopUp_Village.jpg`
+  → "Pop-Up Village Transitions to Community Organization," `2025_Warm_Landing_Place.png` →
+  "The Warm Landing Place," `2025_From_Harm.jpeg` → "From Harm to Health,"
+  `2025_Feasability.jpg` → "Feasibility Study to Transform a Shuttered Prison," and
+  `2026_Workshop.jpg` → "Workshops for the Movement." All six were resized and compressed for
+  web (roughly 270–450KB each, down from up to 22MB) and saved into `assets/` with simplified
+  filenames. 10 timeline cards still show the placeholder graphic — see "Content still needed
+  from you" below for the full list of what's still missing images.
+  Worth mentioning since it's not visible in the final result but did happen: my first attempt
+  at swapping these in used a single regex pattern to find-and-replace all six at once, and it
+  went wrong — the pattern wasn't strictly scoped to stay within one timeline card, so on cards
+  where regex backtracking had room to roam, it matched across card boundaries and put an image
+  in the wrong card entirely. I caught it by checking each card's actual image against its title
+  before finishing, rather than trusting that "6 replacements reported" meant "6 correct
+  replacements." Restored from the last delivered version and redid the swap with plain,
+  position-anchored string replacement instead of regex, then re-verified all 25 cards
+  individually. Flagging this so you know the extra verification step is why this took a
+  couple of passes, not because anything about the final result is uncertain.
+
+## Previous changes
+- **"What's Next" is no longer a full-bleed photo hero.** The salon collage photo used to be
+  the section's background image with a dark scrim over it and the quote overlaid on top. It's
+  now a regular two-column layout instead (`.next-row` in `style.css`): the eyebrow, heading,
+  and quote on the left, the collage image on the right, both sitting directly on the section's
+  purple background. On narrower screens the image moves above the text and the columns stack.
+- **The collage image is genuinely transparent now** — and this uncovered a real problem with
+  work from a few rounds back. When I first compressed this image, I converted it to a JPEG,
+  and JPEG has no alpha channel, so the transparent areas around the torn-paper photo silently
+  got filled in as solid black. That was invisible while the image was a full-bleed background
+  (nothing showed through it either way), but the instant it became a normal inline image, the
+  black fill appeared as an ugly rectangular box around the torn-paper shape. I went back to
+  your original upload (`10thAnniv_Salon_Collage.png`, which does have real transparency),
+  re-exported it as a PNG this time — with a palette-quantization pass to keep the file small
+  (`10thAnniv_Salon_Collage_web.png`, ~640KB, down from a naive 3.2MB re-export) — and swapped
+  it in. The old flattened JPG is deleted from `assets/`. The image now uses a CSS
+  `filter: drop-shadow(...)` instead of a `box-shadow`, since drop-shadow follows the actual
+  torn-paper silhouette instead of the image's rectangular bounding box, which matters now that
+  the corners are really transparent rather than a black rectangle.
+
+## Previous changes
+- **"Join us" (CTA) is back to Charcoal**, reverting the brown from the round before this one —
+  the "JOIN US" label and the CTA intro paragraph are back to their original colors too (bright
+  green and 78% white respectively), since charcoal has plenty of contrast headroom and didn't
+  need the brown-specific adjustments.
+- **"What's Next" is now Purple (`#A1238F`)** instead of charcoal — your suggestion. This still
+  solves the original problem (the section no longer blends into its neighbors): Timeline stays
+  charcoal, What's Next is now purple, and CTA is charcoal again, so all three sections read as
+  clearly separate rather than any two of them blurring together. The hero photo/quote area is
+  unaffected either way, since it has its own dark image overlay regardless of the section's
+  background — only the pillar-card area (previously sitting on whatever `.next`'s background
+  was) actually shows the new purple.
+  One small note: the middle pillar card ("Building the Field") has a purple top accent stripe
+  (`--p-color: var(--purple)`), which is now the exact same purple as the section background
+  behind it. It's still visible as a thin line on the white card, just less distinct than the
+  teal and orange accents on the other two cards. Say the word if you'd like that one card's
+  accent color changed to something that stands out more against purple.
+
+## Previous changes
+- **"Join us" (CTA) section now uses Brown (`#9D5E27`) instead of Charcoal.** After the last
+  change made "What's Next" charcoal too, it sat directly next to the also-charcoal CTA section
+  with nothing but a thin 1px line between them, so the two blended together. Brown is still
+  from the official tertiary palette, dark enough to keep white text easily readable, and — this
+  mattered in choosing it — distinct enough from the orange/purple/bright-green CTA cards and
+  the teal Impact Stats section that nothing nearby ends up a near-match. I checked contrast
+  ratios rather than eyeballing it: white text on this brown comes out around 5.2:1, comfortably
+  past the WCAG AA minimum (4.5:1) for body text. Two small text-color tweaks came with it for
+  the same reason — the CTA's "JOIN US" label moved from bright green (which measured only
+  ~2.2:1 against brown, not legible enough) to plain white, and the CTA intro paragraph went
+  from 78% to 92% white opacity so it clears the AA threshold too. Nothing about the CTA cards
+  themselves changed.
+
+## Previous changes
+- **"What's Next" and the pillar cards now share one background.** The section (`.next` in
+  `style.css`) used to sit on the light paper color while the hero photo above it was dark —
+  the hard color change right where the hero image ended made the pillars feel like a separate,
+  disconnected block underneath rather than part of the same section. The whole section is now
+  charcoal, matching the hero, so the photo flows straight into the pillar cards with no seam;
+  the white pillar cards now float on dark the same way the Donate/Partner/Stay Connected cards
+  already do in the CTA section right below, so the two sections read as a consistent pair
+  rather than two different visual styles back to back. Added a faint 1px top border to both
+  `.next` and `.cta` (`rgba(255,255,255,.08)`) so you can still tell where Timeline → What's
+  Next → Join Us hand off to each other, even though all three are now the same charcoal.
+
+## Previous changes
 - **"What's Next" now has two headings.** The small orange "WHAT'S NEXT" label is back to an
   `<h3>` (it had briefly been an `<h2>` in the round before this one). Underneath it there's now
   a real `<h2>`, **"Imagine, Design, Build, Own,"** styled to match "A Decade in Motion" exactly
@@ -221,6 +306,11 @@ used, not just here.
   at the top of the "Join us" CTA section
 - `assets/Placeholder_Image.png` — your magenta "10 Years" placeholder graphic, used on every
   timeline card and pillar card that doesn't have real media yet
+- `assets/10thAnniv_Salon_Collage_web.png` — the visioning-salon collage, now a real transparent
+  PNG (replacing an earlier JPEG re-export that had silently lost its transparency)
+- `assets/2016_DJDS_Founded.jpg`, `2024_PopUp_Village.jpg`, `2025_Warm_Landing_Place.jpg`,
+  `2025_From_Harm.jpg`, `2025_Feasability.jpg`, `2026_Workshop.jpg` — your six real timeline
+  photos, replacing placeholders on the matching cards
 
 Open `index.html` in a browser to preview it as-is.
 
@@ -307,8 +397,12 @@ that still need real content before launch:
   before launch (see `.stat-pending` in `style.css`).
 - The three "What's Next" pillar cards now have real titles, but their description text and
   images are still placeholders (`[Placeholder — describe...]` copy and `Placeholder_Image.png`)
-- Every timeline card and pillar card still showing `Placeholder_Image.png` (15 timeline cards
-  + all 3 pillar cards — see "Most recent changes" above for the full timeline list)
+- Every timeline card and pillar card still showing `Placeholder_Image.png` — 10 timeline cards
+  (Atlanta Center for Equity; DJDS Tests the Waters with Product Design; DJDS Purchases Land in
+  Detroit; Advocating for Change in a Whole New World; For the Love of Well-Being; LA County —
+  Youth Justice Reimagined Working Group; Expansion into New Regions and Project Types;
+  Inaugural Post-Occupancy Evaluation; Advocating for Change at the Grasstops and Grassroots;
+  Supporting a New Behavioral Health Hospital Development) plus all 3 pillar cards
 - Donate / Partner copy blocks (the paragraph text inside those two CTA cards)
 - A real link for the "Start a conversation" Partner button and the three social icons
   (Instagram/LinkedIn/X) — currently `#`. Both Donate buttons are now live and point to
