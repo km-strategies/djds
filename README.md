@@ -4,6 +4,40 @@ A static prototype styled after the IDEO.org "Ten Year Impact" scroll experience
 built from DJDS's own brand guide and photography.
 
 ## Most recent changes
+- **Nav logo enlarged** — `.nav-logo` height increased from 36px to 46px.
+- **Hero logo swapped to the white lockup** (`djds10LockUp_Horizontal_White_2x.png`) so it reads
+  cleanly over the background video.
+- **Impact stats headline now sits on one line at desktop widths** — "Infrastructure built
+  with — and owned by — community." (widened `.stats-head`, added a `white-space: nowrap` rule
+  above 900px, no change on mobile where it still wraps normally).
+- **"Coast to Coast" section is now visible.** It turns out this was already fully built —
+  the animated map, the intro copy, and a legend with the exact regional project counts you
+  sent (Northern California 8, Southern California 5, Michigan 2, New York 3, Massachusetts 2,
+  New Jersey 1, Virginia 1, Georgia & Alabama 3) — it was just sitting behind an `is-hidden`
+  class from an earlier round. Removed that class rather than rebuilding the section.
+- **Impact-stats collage banner swapped** to your updated image (`DJDS_Microsite-Collage2.jpg`).
+- **Partner and funder logo grids swapped** to your updated files
+  (`DJDS_PartnerLogosClient_UPDATED.png`, `DJDS_PartnerLogosFunders_UPDATED.png`).
+- **Timeline years now use VTC Bayard** (same H2 font as section headings) at a smaller size
+  (46px → 28px), and **all timeline images are now cropped to 16:9** (previously 4:3) so the
+  row reads consistently.
+- **Eight more timeline placeholder images replaced** with your real photos: Atlanta Center for
+  Equity (rendering), DJDS Tests the Waters with Product Design (Mobile Refuge Room), DJDS
+  Purchases Land in Detroit (land-signing photo), For the Love of Well-Being (FLOW Spot comic),
+  LA County — Youth Justice Reimagined Working Group (design-guide cover), Expansion into New
+  Regions and Project Types (Barrios Unidos courtyard rendering), Inaugural Post-Occupancy
+  Evaluation (Restore Oakland Peace Room), and Supporting a New Behavioral Health Hospital
+  Development (Gateways trauma-informed design sketch).
+- **"What's Next" now includes a photo of Deanna** — a small circular portrait sits beside her
+  name in the quote attribution, rather than restructuring the whole section's layout.
+- **"Building Spaces" pillar image swapped** to your photo. **"Building the Field" is still
+  waiting on its image** — you attached `BuildingField.jpg`, but what actually arrived was a
+  0-byte macOS file alias ("file clipping"), not the image itself. Please drag the real .jpg
+  into the chat again and I'll drop it in.
+- **"Stay connected" CTA card background changed from bright green to teal**, with matching
+  white-on-teal button and icon styling.
+
+## Previous changes
 - **Six timeline placeholders replaced with your real photos**, matched by the year/name in
   each filename: `2016_DJDS_Founded.JPG` → "DJDS Founded in Oakland," `2024_PopUp_Village.jpg`
   → "Pop-Up Village Transitions to Community Organization," `2025_Warm_Landing_Place.png` →
@@ -397,12 +431,11 @@ that still need real content before launch:
   before launch (see `.stat-pending` in `style.css`).
 - The three "What's Next" pillar cards now have real titles, but their description text and
   images are still placeholders (`[Placeholder — describe...]` copy and `Placeholder_Image.png`)
-- Every timeline card and pillar card still showing `Placeholder_Image.png` — 10 timeline cards
-  (Atlanta Center for Equity; DJDS Tests the Waters with Product Design; DJDS Purchases Land in
-  Detroit; Advocating for Change in a Whole New World; For the Love of Well-Being; LA County —
-  Youth Justice Reimagined Working Group; Expansion into New Regions and Project Types;
-  Inaugural Post-Occupancy Evaluation; Advocating for Change at the Grasstops and Grassroots;
-  Supporting a New Behavioral Health Hospital Development) plus all 3 pillar cards
+- Two timeline cards still show `Placeholder_Image.png` — "Advocating for Change in a Whole New
+  World" (2020) and "Advocating for Change at the Grasstops and Grassroots" (2025) — no images
+  were sent for these yet.
+- The "Building the Field" pillar image — `BuildingField.jpg` didn't actually arrive (see above)
+  and the "Building Capacity" pillar still has no image at all.
 - Donate / Partner copy blocks (the paragraph text inside those two CTA cards)
 - A real link for the "Start a conversation" Partner button and the three social icons
   (Instagram/LinkedIn/X) — currently `#`. Both Donate buttons are now live and point to

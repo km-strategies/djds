@@ -126,7 +126,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{
   padding-top:14px; padding-bottom:14px;
 }
 .site-nav img{ height:28px; width:auto; }
-.site-nav img.nav-logo{ height:36px; }
+.site-nav img.nav-logo{ height:46px; }
 .site-nav nav{ display:flex; align-items:center; gap:28px; }
 .site-nav nav a{ margin-left:28px; }
 .site-nav nav a:first-child{ margin-left:0; }
@@ -269,15 +269,18 @@ a:focus-visible, button:focus-visible, input:focus-visible{
   position: relative;
   overflow: hidden;
 }
-.stats-head{ max-width: 640px; margin-bottom: 56px; }
+.stats-head{ max-width: 980px; margin-bottom: 56px; }
 .stats-head .eyebrow{ color: var(--charcoal); }
 .stats-head h2{
   font-family: var(--font-h2);
   text-transform: uppercase;
   font-weight:400;
-  font-size: clamp(30px, 4vw, 46px);
+  font-size: clamp(26px, 3vw, 42px);
   line-height:1.05;
   margin: 10px 0 0;
+}
+@media (min-width: 900px){
+  .stats-head h2{ white-space: nowrap; }
 }
 .is-hidden{ display:none !important; }
 .stat-grid{
@@ -423,7 +426,8 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 }
 
 .quote-carousel{
-  max-width: 860px;
+  max-width: none;
+  width: 100%;
   background: #fff;
   border: 1px solid #EAE2CB;
   border-radius: 18px;
@@ -450,6 +454,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{
   font-weight:500;
   margin: 0 0 22px;
   color: var(--charcoal);
+  max-width: 900px;
 }
 .quote-slide cite{
   display:block;
@@ -599,13 +604,15 @@ a:focus-visible, button:focus-visible, input:focus-visible{
   display:flex; flex-direction:column;
 }
 .tl-card .tl-year{
-  font-family: var(--font-display);
-  font-size: 46px;
+  font-family: var(--font-h2);
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 28px;
   color: var(--bright-green);
   padding: 22px 22px 0;
   line-height:1;
 }
-.tl-card .tl-media{ aspect-ratio: 4/3; overflow:hidden; margin: 16px 0 0; background:#222; position:relative; }
+.tl-card .tl-media{ aspect-ratio: 16/9; overflow:hidden; margin: 16px 0 0; background:#222; position:relative; }
 .tl-card .tl-media img{ width:100%; height:100%; object-fit:cover; }
 .tl-card .tl-media.tl-video{ aspect-ratio:16/9; background:#000; }
 .tl-video-inner{ position:absolute; top:0; right:0; bottom:0; left:0; width:100%; height:100%; }
@@ -654,11 +661,9 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 .next .eyebrow{ color: #fff; }
 
 .next-row{
-  display: grid;
-  grid-template-columns: 1.15fr .85fr;
-  gap: 56px;
-  align-items: center;
-  margin-bottom: 72px;
+  display: block;
+  max-width: 760px;
+  margin: 0 auto 72px;
 }
 .next-text .eyebrow{ margin: 0 0 14px; display:block; }
 .next-hero-title{
@@ -689,26 +694,18 @@ a:focus-visible, button:focus-visible, input:focus-visible{
   display:block;
 }
 .next-quote cite span{ display:block; font-weight:500; color: rgba(255,255,255,.65); font-size:13px; margin-top:2px;}
-
-.next-image{
-  margin: 0;
+.next-cite-row{
+  display:flex; align-items:center; gap:14px;
 }
-.next-image img{
-  width: 100%;
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 20px 34px rgba(0,0,0,.35));
-}
-.next-image figcaption{
-  margin-top: 14px;
-  font-size: 12.5px;
-  line-height:1.5;
-  color: rgba(255,255,255,.65);
+.next-cite-photo{
+  width:180px; height:180px; border-radius:50%;
+  object-fit:cover; object-position: center 20%;
+  flex-shrink:0;
+  border: 4px solid rgba(255,255,255,.35);
 }
 
-@media (max-width: 900px){
-  .next-row{ grid-template-columns: 1fr; gap: 36px; }
-  .next-image{ order: -1; }
+@media (max-width: 600px){
+  .next-cite-photo{ width:120px; height:120px; }
 }
 
 .pillars{
@@ -754,33 +751,30 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 .cta{ padding: 100px 0 40px; background: var(--charcoal); color:#fff; border-top: 1px solid rgba(255,255,255,.08); }
 .cta .eyebrow{ color: var(--bright-green); }
 
-/* light card so the funder logos (many with dark/black text) stay legible
-   against the section's dark charcoal background */
+/* full-bleed light section, styled to match .partners above */
 .cta-funders{
   background: var(--paper);
-  border-radius: 20px;
-  padding: 40px 44px 44px;
-  margin-bottom: 72px;
+  padding: 72px 0;
   text-align: center;
-  box-shadow: 0 24px 50px rgba(0,0,0,.25);
 }
 .cta-funders .eyebrow{ color: var(--forest-green); }
 .cta-funders h3{
   font-size: 15px; font-weight:700; color: var(--charcoal-tint);
   margin: 8px 0 34px;
 }
-@media (max-width: 600px){
-  .cta-funders{ padding: 30px 24px 34px; }
-}
 
-.cta-head{ max-width: 700px; margin-bottom: 50px; }
+.cta-head{ max-width: 900px; margin-bottom: 50px; }
 .cta-head h2{
   font-family: var(--font-h2);
   text-transform:uppercase; font-weight:400;
-  font-size: clamp(30px, 4.4vw, 48px);
+  font-size: clamp(26px, 3vw, 40px);
   margin:10px 0 16px; line-height:1.02;
 }
-.cta-head p{ font-size:16.5px; line-height:1.6; color: rgba(255,255,255,.78); margin:0; }
+@media (min-width: 1000px){
+  .cta-head{ max-width: none; }
+  .cta-head h2{ white-space: nowrap; }
+}
+.cta-head p{ font-size:16.5px; line-height:1.6; color: rgba(255,255,255,.78); margin:0; max-width:620px; }
 
 .cta-grid{
   display:grid;
@@ -803,10 +797,10 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 .cta-card .btn{ margin-top:auto; align-self:flex-start; }
 .cta-card.donate{ background: var(--orange); color:#1a1a1a; }
 .cta-card.donate .btn{ background:#1a1a1a; color:#fff; }
-.cta-card.partner{ background: var(--purple); color:#fff; }
-.cta-card.partner .btn{ background:#fff; color: var(--purple); }
-.cta-card.connect{ background: var(--bright-green); color:#16210c; }
-.cta-card.connect .btn{ background:#16210c; color:#fff; }
+.cta-card.partner{ background: var(--purple); color:#1a1a1a; }
+.cta-card.partner .btn{ background:#1a1a1a; color:#fff; }
+.cta-card.connect{ background: var(--teal); color:#1a1a1a; }
+.cta-card.connect .btn{ background:#1a1a1a; color:#fff; }
 .social-row{ display:flex; gap:12px; margin-top:4px; }
 .social-row a{
   width:38px; height:38px; border-radius:50%;
@@ -814,7 +808,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{
   background: rgba(0,0,0,.12);
   font-size:14px; font-weight:800; text-decoration:none;
 }
-.cta-card.partner .social-row a, .cta-card.donate .social-row a{ background: rgba(255,255,255,.22); color:#fff;}
+.cta-card.partner .social-row a, .cta-card.donate .social-row a, .cta-card.connect .social-row a{ background: rgba(255,255,255,.22); color:#fff;}
 
 /* =========================================================
    FOOTER
