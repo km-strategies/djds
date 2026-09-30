@@ -126,7 +126,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{
   padding-top:14px; padding-bottom:14px;
 }
 .site-nav img{ height:28px; width:auto; }
-.site-nav img.nav-logo{ height:46px; }
+.site-nav img.nav-logo{ height:58px; }
 .site-nav nav{ display:flex; align-items:center; gap:28px; }
 .site-nav nav a{ margin-left:28px; }
 .site-nav nav a:first-child{ margin-left:0; }
@@ -824,7 +824,7 @@ footer.site-footer{
   padding-bottom: 28px; margin-bottom:22px;
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
-.footer-top img{ height:26px; }
+.footer-top img{ height:40px; }
 .footer-links{ display:flex; gap:26px; flex-wrap:wrap; font-size:13.5px; }
 .footer-links a{ text-decoration:none; color: rgba(255,255,255,.7); }
 .footer-links a:hover{ color:#fff; }
