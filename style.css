@@ -600,7 +600,6 @@ a:focus-visible, button:focus-visible, input:focus-visible{
   background: #333331;
   border-radius: 16px;
   overflow:hidden;
-  border-top: 5px solid var(--bright-green);
   display:flex; flex-direction:column;
 }
 .tl-card .tl-year{
@@ -720,12 +719,6 @@ a:focus-visible, button:focus-visible, input:focus-visible{
   position:relative;
   overflow:hidden;
   display:flex; flex-direction:column;
-}
-.pillar::before{
-  content:"";
-  position:absolute; top:0; left:0; right:0; height:6px;
-  background: var(--p-color, var(--teal));
-  z-index: 2;
 }
 .pillar-media{
   position:relative; z-index:1;
