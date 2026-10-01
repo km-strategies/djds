@@ -98,12 +98,6 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 .sk-icon{ width:22px; height:22px; color: var(--orange); flex:none; }
 .sk-icon-inline{ width:34px; height:15px; vertical-align:middle; margin-left:4px; color:currentColor; }
 
-.stat-mark{
-  position:absolute;
-  top:14px; right:14px;
-  width:54px; height:54px;
-  color: rgba(255,255,255,.28);
-}
 .stat-card{ position:relative; }
 .stat-pending{
   text-decoration: underline wavy rgba(255,255,255,.6);
@@ -287,8 +281,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{
   display:grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  background: rgba(255,255,255,.25);
-  border: 1px solid rgba(255,255,255,.25);
+  background: #F6921E;
   border-radius: 14px;
   overflow:hidden;
 }
@@ -389,6 +382,51 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 }
 @media (max-width: 480px){
   .stats-map-legend{ grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   ORIGIN STORY
+   ========================================================= */
+.origin{
+  background: var(--teal);
+  color: #fff;
+  padding: 100px 0 40px;
+}
+.origin-row{
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  gap: 56px;
+  align-items: center;
+}
+.origin-image{ margin: 0; }
+.origin-image img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+  box-shadow: 0 24px 50px rgba(0,0,0,.18);
+}
+.origin-text .eyebrow{ color: #F6921E; margin: 0 0 14px; display:block; }
+.origin-text h2{
+  font-family: var(--font-h2);
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: clamp(28px, 3.6vw, 44px);
+  line-height: 1.05;
+  color: #fff;
+  margin: 0 0 22px;
+}
+.origin-text p{
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: rgba(255,255,255,.75);
+  margin: 0 0 18px;
+}
+.origin-text p:last-child{ margin-bottom: 0; }
+
+@media (max-width: 900px){
+  .origin-row{ grid-template-columns: 1fr; gap: 32px; }
+  .origin-image{ order: -1; }
 }
 
 /* partners strip */
@@ -660,9 +698,11 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 .next .eyebrow{ color: #fff; }
 
 .next-row{
-  display: block;
-  max-width: 760px;
-  margin: 0 auto 72px;
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 56px;
+  align-items: center;
+  margin-bottom: 72px;
 }
 .next-text .eyebrow{ margin: 0 0 14px; display:block; }
 .next-hero-title{
@@ -705,6 +745,27 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 
 @media (max-width: 600px){
   .next-cite-photo{ width:120px; height:120px; }
+}
+
+.next-image{
+  margin: 0;
+}
+.next-image img{
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 20px 34px rgba(0,0,0,.35));
+}
+.next-image figcaption{
+  margin-top: 14px;
+  font-size: 12.5px;
+  line-height:1.5;
+  color: rgba(255,255,255,.65);
+}
+
+@media (max-width: 900px){
+  .next-row{ grid-template-columns: 1fr; gap: 36px; }
+  .next-image{ order: -1; }
 }
 
 .pillars{
