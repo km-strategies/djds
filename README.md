@@ -1,8 +1,5 @@
 # DJDS — 10 Years of Designing Justice (campaign microsite)
 
-A static prototype styled after the IDEO.org "Ten Year Impact" scroll experience,
-built from DJDS's own brand guide and photography.
-
 ## Most recent changes
 - **Nav logo enlarged** — `.nav-logo` height increased from 36px to 46px.
 - **Hero logo swapped to the white lockup** (`djds10LockUp_Horizontal_White_2x.png`) so it reads
