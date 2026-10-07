@@ -514,8 +514,8 @@ a:focus-visible, button:focus-visible, input:focus-visible{
   gap:14px;
 }
 .quote-photo{
-  width:84px;
-  height:84px;
+  width:120px;
+  height:120px;
   border-radius:50%;
   object-fit:cover;
   flex-shrink:0;
