@@ -930,3 +930,42 @@ footer.site-footer{
   .stat-grid{ grid-template-columns: 1fr; }
   .logo-grid{ grid-template-columns: repeat(2,1fr); }
 }
+
+
+/* ---- map legend: dots only for multi-place states ---- */
+.stats-map-legend .dot-none{ background: transparent; }
+
+/* ---- Join us: giving tiers ---- */
+.cta-tiers{
+  list-style:none; margin: 0 0 56px; padding:0;
+  display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+.cta-tiers li{
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 14px;
+  padding: 20px 22px;
+  display:flex; flex-direction:column; gap:8px;
+}
+.cta-tiers .tier-amt{
+  font-family: var(--font-display);
+  font-size: 32px; line-height:1; color: var(--orange);
+}
+.cta-tiers .tier-desc{ font-size:14.5px; line-height:1.5; color: rgba(255,255,255,.85); }
+@media (max-width: 900px){ .cta-tiers{ grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px){ .cta-tiers{ grid-template-columns: 1fr; } }
+
+/* links inside timeline copy */
+.tl-body p a{ color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+
+/* map legend groups (projects vs advising key) */
+.legend-group{
+  display:flex; align-items:center; gap:10px;
+  margin: 18px 0 10px;
+  font-family: var(--font-body);
+  font-size: 13px; font-weight: 800;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--charcoal);
+}
+.legend-group .swatch{ width:16px; height:16px; border-radius:4px; background: var(--sw); flex:none; }
+.stats-map-legend + .legend-group{ margin-top: 22px; }
